@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        body:not(.nofilter) .target {
-            filter: url("#goo");
-        }
-
         .target {
             height: 130px;
             max-width: 200px;
-            filter: url("#goo");
             text-align: center;
             position: relative;
             padding: 10px;
             user-select: none;
+        }
+
+        body:not(.no-filter) .target {
+            filter: url("#goo");
         }
 
         .share {
@@ -92,12 +91,23 @@
     <span class="icon-share-qq"><img src="../assets/images/qq-transparent.png"></span>
 </div>
 
-<pre>说明</pre>
+<pre>
+    步骤：
+    1. 插入SVG滤镜代码
+    2. 定义圆圈位置
+    3. 容器设置filter: url('#goo')
+    4. 点击的时候圆圈移位
+
+    缺点：
+    1. 兼容性 - IE不支持，但是在Safari和iPhone上有明显bug，所以在其上关闭滤镜效果
+    2. 此效果只适用于圆形元素，因为这里添加了高斯模糊，正圆的高斯模糊是均匀的
+    3. 容器尺寸要足够包容子元素，如果边框有接触，也有明显bug
+</pre>
 </body>
 <script>
-    var ua = navigator.userAgent;
-    if (/Safari|iPhone/i.test(ua) && /chrome/i.test(ua) == false) {
-        document.body.classList.add('nofilter');
+    const ua = navigator.userAgent;
+    if (/Safari|iPhone/i.test(ua) && /chrome/i.test(ua) === false) {
+        document.body.classList.add('no-filter')
     }
 </script>
 </html>
