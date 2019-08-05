@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            border: 1px solid #000;
+        }
+
+        div img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+object-fit: fill
+<div>
+    <img
+        style="object-fit: fill;"
+        src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"/>
+</div>
+object-fit: contain
+<div>
+    <img
+        style="object-fit: contain;"
+        src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"/>
+</div>
+object-fit: cover
+<div>
+    <img
+        style="object-fit: cover;"
+        src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"/>
+</div>
+object-fit: none
+<div>
+    <img
+        style="object-fit: none;"
+        src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"/>
+</div>
+object-fit: scale-down
+<div>
+    <img
+        style="object-fit: scale-down;"
+        src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"/>
+</div>
+<pre>
+    object-fit指定元素的内容应该如何适应所在的内容框
+    类比于background: cover;
+
+    object-fit: fill;
+        拉伸内容以致宽高填充满内容框
+    object-fit: contain;
+        保持宽高比，缩放内容以致宽或高某一边紧贴内容框，将产生空白区
+    object-fit: cover;
+        保持宽高比，裁剪内容以致宽高填充满内容框
+    object-fit: none;
+        内容保留原有的尺寸
+    object-fit: scale-down;
+        内容的尺寸与 none 或 contain 中的一个相同，取决于它们两个之间谁得到的对象尺寸会更小一些
+</pre>
+</body>
+</html>
