@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MutationObserver</title>
+    <style>
+        .wrap {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<button type="button" onclick="handleClickAdd()">增加元素</button>
+<button type="button" onclick="handleClickDel()">删除元素</button>
+<div class="wrap">
+    <div class="body__wrap">
+        <li>1</li>
+    </div>
+    <div class="log__wrap"></div>
+</div>
+<script>
+    const dom = document.querySelector('.body__wrap')
+    const log = document.querySelector('.log__wrap')
+    const onMutation = () => {
+        const p = document.createElement('p')
+        p.innerHTML = 'Mutation 调用了'
+        log.appendChild(p)
+    }
+
+    // 创建并返回一个新的 MutationObserver 它会在指定的DOM发生变化时被调用
+    const observer = dom.observer = new MutationObserver(onMutation)
+    observer.observe(dom, {childList: true, subtree: true})
+    onMutation()
+
+
+    const handleClickAdd = () => {
+        const li = document.createElement('li')
+        li.innerHTML = dom.children.length + 1
+        dom.appendChild(li)
+    }
+
+    function handleClickDel() {
+        if (!dom.lastElementChild) return
+        dom.removeChild(dom.lastElementChild)
+    }
+</script>
+<pre>
+    MutationObserver(构造函数) 提供了监视对DOM树所做更改的能力
+
+    new MutationObserver(callback)
+
+    实例属性：
+    observer() 配置MutationObserver在DOM更改匹配给定选项时，通过其回调函数开始接收通知
+        - target 监听的DOM元素
+        - options
+            - options.childList 是否子元素DOM也被纳入监听范围
+            - options.attributes 是否监听目标元素的属性值
+            - options.subtree 当变化的不是目标元素,
+
+    disconnect() 阻止 MutationObserver 实例继续接收的通知，直到再次调用其observe()方法，该观察者对象包含的回调函数都不会再被调用。
+
+    takeRecords() 从MutationObserver的通知队列中删除所有待处理的通知，并将它们返回到MutationRecord对象的新Array中。
+</pre>
+</body>
+</html>
